@@ -36,8 +36,7 @@ main {
 }
 
 .navBar {
-  /* Code (Width)Change */
-  width: 10%;
+  width: 100%;
   height: 100px;
   background-color: hsl(0deg 0% 95.29%);
   border: 2px solid red;
@@ -70,7 +69,7 @@ main {
     background-color: #f9f9f9;
   }
 }
-/* Grid Container Code Here */
+
 .grid-container {
   display: grid;
   grid-template-columns: 260px auto;
@@ -91,93 +90,15 @@ main {
   height: 70px;
 }
 
-/* Added Media query for 576 Px */
-
-/* @media (max-width: 576px){
-  .grid-container {
-    padding: 10px;
-  }
-} */
-
-
-/* Added Media query for 1024 Px */
-@media (max-width: 1024px){
-  .mini-dashboard-container{
-    margin-left: 12%;
-  }
-  .mini-dashboard-container{
-    font-weight: 400;
-    margin-top: 6px;
-    margin-left: 10%;
-  }
-  .downtime-component{
-    display: flex;
-    flex-direction: column;
-  }
-  .bottom-container{
-    padding-left: 0px;
-    font-size: 10px;
-    font-weight: 400;
-  }
-
-  .grid-item-container{
-    font-size: 50%;
-    height: 50%;
-    border-radius: 2px;
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 1%;
   }
 }
 
-/* @media (max-width: 1024px) {
-  .grid-container {
-    padding: 0 1%;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-  } */
-
-  /* .machine-component{
-    display: block;
-    height: auto;
-    width: 50%;
-    margin-top: 2%;
-    text-align: left;
-  } */
-
-/* } */
-
-/* Media Query 768 view port */
 @media (max-width: 768px) {
   .header {
     width: 96%;
-   
-  }
-  
-  .mini-dashboard-container{
-    padding: 5% 2% 0% 5%;
-  }
-
-  .production-container{
-    height: 20vh;
-    width: 18rem;
-  }
-  .actual-production-container{
-    height: 20vh;
-    width: 8rem;
-  }
-  .behind-by-container{
-    height: 20vh;
-    width: 8rem;
-  }
-
-  .downtime-component{
-    margin-top: 2rem;
-    height: 40vh;
-    width: 15rem;
-  }
-
-  .machine-component{
-    height: 20vh;
-    width: 8rem;
   }
 
   .drop-button-container .MuiIconButton-root {
@@ -191,75 +112,15 @@ main {
   }
 }
 
-/* Media Query 480 view port */
-/* new Data */
-
 @media (max-width: 480px) {
+  
   .header {
     height: 60px;
     width: 85%;
   }
-  .mini-dashboard-container {
-    padding: 4%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+  .Typography{
+     margin-top: 300%;
   }
-
- /* Media Query 320 view port */
-  @media (max-width: 320px) {
-    .mini-dashboard{
-      /* height: 10%; */
-      /* margin-bottom: 20%; */
-      
-      display: flex;
-      padding: 0% 2% 0% 1%;
-      align-items: center;
-      margin-left: 10%;
-      margin-top: 10%
-      /* alignItems: center; */
-      
-    }
-    .css-m1yxpc-MuiGrid-root{
-      width: 30%;
-    }
-
-    /* .machine-component{
-      display: block;
-      height: auto;
-      width: 50%;
-      margin-top: 290%;
-      text-align: left;
-    } */
-    
-    .quality-container{
-      margin-left: 5px;
-    }
-    .grid-container{
-      display: grid;
-      gap: 10%;
-    }
-    .downtime-component{
-      margin-top: 2rem;
-      height: 40vh;
-      width: 15rem;
-    }
-  
-  }
-
-/*   
-  @media (max-width: 425px) {
-    .mini-dashboard{
-      font-weight: 600;
-      margin-top: 25px;
-      align-items: center;
-    }
-    
-  } */
-
-
-
-
-  /* New Code Ended Here  */
 
   .drop-button-container {
     align-items: center;
@@ -279,7 +140,6 @@ main {
   flex-direction: column;
 }
 
-/* sidebar Is Here */
 .sidebar {
   background: linear-gradient(131deg, rgba(10, 27, 87, 1) 63%, rgb(15 46 109 / 99%) 83%);
   color: #fff;
@@ -288,7 +148,6 @@ main {
   position: fixed;
   left: 0;
   top: 0;
-  right: 5%;
   z-index: 10;
 }
 
@@ -404,3 +263,12 @@ main {
 .footer_section .link {
   margin-bottom: 10px;
 }
+
+@media screen and (min-width:420px) {
+  
+}
+/* @media screen and (max-width:420px) {
+  .sidebar {
+    background-color: #ee0a0a;
+  }
+} */

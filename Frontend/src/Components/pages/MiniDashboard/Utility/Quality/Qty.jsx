@@ -2,6 +2,11 @@ import { Box, Grid, Typography } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 // Subcomponent
+const qualityCustomStyles = {
+  ...(window.innerWidth <= 768 && {
+    marginLeft:"10px",
+  })
+}
 const Qty = ({ title, volume, isVisi, para }) => {
   return (
     <Box sx={{ paddingBottom: "8%" }}>
@@ -17,7 +22,7 @@ const Qty = ({ title, volume, isVisi, para }) => {
         {title}
       </Typography>
       {/* Parameters */}
-      <Grid container sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Grid container sx={{ display: "flex", justifyContent: "space-between",...qualityCustomStyles}}>
         <Grid item md={7} lg={7}>
           <Typography
             sx={{

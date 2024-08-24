@@ -157,6 +157,77 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
   ];
 
   const difference = DashData.expectedProduction - DashData.actualProduction;
+  const typographyStyles = {
+    color: "hsl(215.84deg 100% 15.1%)",
+    fontWeight: 800,
+    marginTop: "4px",
+    alignItems: "center",
+    ...(window.innerWidth <= 768 && {
+      marginTop: "2.5rem", // Adjust margin for smaller screens
+      marginLeft:"30%", // Adjust font size for smaller screens
+    }),
+  };
+const customNavbarStyle={
+  ...(window.innerWidth <= 768 && {
+    marginTop: "50%", 
+  }),};
+  const productionStyles = {
+    ...(window.innerWidth <= 768 && {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: "0px", // No space between elements
+      // marginTop: "0%", // Ensure there is no margin around the container
+      marginLeft:"7%",
+      padding: "0px", // Ensure there is no padding around the container
+      marginTop:"8%", // Margin Top Added...
+      
+    }),
+  };
+  const productionStyles1={
+    ...(window.innerWidth <= 768 && {
+      marginBottom:"150%",
+      
+    }),
+  }
+  const productionComponentStyles={
+    ...(window.innerWidth <= 768 && {
+      display: "flex",
+      padding:"8%",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "110%", // Actual width is 105%
+      marginTop: "-318px", // marging top changed..
+    }),
+  };
+  const productionComponentDowntime={
+    ...(window.innerWidth <= 768 && {
+     marginTop:"75%",
+     marginLeft:"2%",/* Addded marginLeft to the DownTime Component...*/
+    }),
+  };
+  const productionComponentOEE={
+    ...(window.innerWidth <= 768 && {
+     marginTop:"2%",
+     marginLeft: "3%",
+    //  paddingTop: "5%",
+     
+     
+    }),
+  };
+  const productionComponentData={
+    ...(window.innerWidth <= 768 && {
+    marginBottom:"5%",
+     }),
+  }
+
+  const downtimeAndOEECustomStyles = {
+    ...(window.innerWidth <= 768 && {
+      marginLeft:"32px"
+    })
+  }
 
   return (
     <div>
@@ -175,19 +246,14 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
             zIndex: 1,
           }}
         >
-          {/* MiniDashBoard Code  */}
-          <Grid container alignItems="center" className="mini-dashboard">
-            <Grid item lg={2} className="mini-dashboard-container">
+          {/* New Class */}
+
+          <Grid container alignItems="center">
+            <Grid item lg={2}>
               <Typography
-                style={{
-                  color: "hsl(215.84deg 100% 15.1%)",
-                  fontWeight: 800,
-                  marginTop: "4px",
-                  // new Content
-                  marginLeft:"6%",
-                  alignItems: "center",
-                }}
+                style={typographyStyles}
               >
+                {/* Name */}
                 MiniDashboard
               </Typography>
             </Grid>
@@ -199,7 +265,9 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+              
               }}
+           
             >
               {isVisi && isNavbarVisible && (
                 <CustomNavbar
@@ -230,6 +298,7 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
               >
                 <MuiBtn
                   sx={{ color: "hsl(215.84deg 100% 15.1%)", fontWeight: 550 }}
+                  style={customNavbarStyle}
                 >
                   {isNavbarVisible ? (
                     <CloseIcon onClick={handleToggleNavbar} />
@@ -249,13 +318,12 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
               marginLeft: "11px",
               width: "99%",
               display: "flex",
+              ...downtimeAndOEECustomStyles,
             }}
           >
             {/*Expected Production */}
-
-            <Grid container spacing={3} item lg={9} className="grid-container">
-              {/* Production Target */}
-              <Grid item xs={12} sm={4} md={4} className="production-container" >
+            <Grid container spacing={2} item lg={9}>
+              <Grid item xs={12} sm={4} md={4} style={productionStyles}>
                 <Item
                   sx={{
                     height: { xs: 130, sm: 130, md: 115 },
@@ -271,7 +339,7 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
                 </Item>
               </Grid>
               {/*Actual Production*/}
-              <Grid item xs={12} sm={4} md={4} className="actual-production-container">
+              <Grid item xs={12} sm={4} md={4} style={productionStyles}>
                 <Item
                   sx={{
                     height: { xs: 130, sm: 130, md: 115 },
@@ -288,7 +356,7 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
               </Grid>
 
               {/* Behind By  */}
-              <Grid item xs={12} sm={4} md={4} className="behind-by-container">
+              <Grid item xs={12} sm={4} md={4}style={{ ...productionStyles, ...productionStyles1 }}>
                 <Item
                   sx={{
                     height: { xs: 130, sm: 130, md: 115 },
@@ -305,19 +373,21 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
               </Grid>
 
               {/* Machine Component */}
-              <Grid item xs={12} sm={12} md={12} sx={{ marginTop: "-250px" }} className="machine-component">
+              <Grid item xs={12} sm={12} md={12} sx={{ marginTop: "-250px" }} >
                 <Box
                   sx={{
                     display: "block",
-                    height: { xs: "auto", sm: "auto", md: "235px" },
+                    // Machine Height Extra Small Devices...
+                    height: { xs: "200px", sm: "auto", md: "235px" },
                     marginTop: "1%",
                     backgroundColor: "#f1f1f1",
                     width: "100%",
                     textAlign: "center",
+                    
                   }}
                 >
                   {/* Title */}
-                  <Typography className="machine-title-container"
+                  <Typography
                     sx={{
                       padding: "5px 4px 6px 16px",
                       fontSize: "16px",
@@ -327,19 +397,22 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
                       justifyContent: "space-between",
                       alignItems: "center",
                       borderBottom: "2px solid #0000004a",
+                      
                     }}
                   >
                     Machine
                     <Box
                       sx={{
                         display: "flex",
+                        
                         color: "hsl(214.86deg 100% 14.51%)",
                       }}
                     >
-                      <Tooltip title="Expand" placement="top">
+                      <Tooltip title="Expand" placement="top" >
                         <IconButton onClick={openModal}>
                           <CropFreeIcon
                             sx={{ fontSize: "12px", fontWeight: "900" }}
+                          
                           />
                         </IconButton>
                       </Tooltip>
@@ -381,10 +454,8 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
                 </Box>
               </Grid>
             </Grid>
-
             {/*Production Component*/}
-            {/* Quality Component */}
-            <Grid container spacing={2} item lg={4} className="quality-container">
+            <Grid container spacing={2} item lg={4} >
               <Grid item xs={12} style={{ marginLeft: "7px" }}>
                 <Item sx={{ height: { xs: "auto", sm: "auto", md: "602px" } }}>
                   <Quality
@@ -398,18 +469,20 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
           </div>
 
           {/*OEE and Downtime component */}
-          <div className="downtime-component"
+          <div
             style={{
               padding: "19px",
               marginLeft: "11px",
               width: "98%",
               display: "flex",
               marginTop: "-259px",
+              ...productionComponentStyles,
+              
             }}
           >
-            <Grid container spacing={0} item lg={12} className="bottom-container">
+            <Grid container spacing={0} item lg={12} >
               {/*Downtime */}
-              <Grid item xs={12} sm={6} md={3.5} style={{}}>
+              <Grid item xs={12} sm={6} md={3.5} style={productionComponentDowntime}>
                 <Typography
                   sx={{
                     padding: "0px 0px 0px 16px",
@@ -421,6 +494,7 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
                     justifyContent: "space-between",
                     alignItems: "center",
                     borderBottom: "2px solid #0000004a",
+                   
                   }}
                 >
                   Downtime
@@ -428,6 +502,7 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
                     sx={{
                       display: "flex",
                       color: "hsl(214.86deg 100% 14.51%)",
+                     
                     }}
                   >
                     <IconButton>
@@ -448,7 +523,7 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
                 xs={12}
                 sm={6}
                 md={4.8}
-                style={{ margin: "0 0 0 9px" }}
+                style={{ margin: "0 0 0 9px" ,...productionComponentOEE}}
               >
                 <Typography
                   sx={{
@@ -461,27 +536,31 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
                     justifyContent: "space-between",
                     alignItems: "center",
                     borderBottom: "2px solid #0000004a",
+                   
                   }}
+                  
                 >
                   OEE
                   <Box
                     sx={{
                       display: "flex",
                       color: "hsl(214.86deg 100% 14.51%)",
+                  
                     }}
+                    
                   >
                     <IconButton>
                       <InfoOutlinedIcon
-                        sx={{ fontSize: "17px", margin: "10px 11px 0px 0px" }}
+                        sx={{ fontSize: "17px", margin: "10px 11px 0px 0px",...productionComponentOEE }}
                       />
                     </IconButton>
                   </Box>
                 </Typography>
                 <Item
                   sx={{
-                    height: { xs: 130, sm: 130, md: 175 },
+                    height: { xs: 245, sm: 130, md: 175 },
                   }}
-                  style={{}}
+                  style={productionComponentData}
                 >
                   <OEE
                     percentage={DashData.oEE}
@@ -490,6 +569,7 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
                       "hsl(48.62deg 82.95% 61.37%)",
                     ]}
                     strokeWidth="20"
+                   
                   />
                 </Item>
               </Grid>
@@ -504,6 +584,7 @@ function MiniDashboard({ isOpen, toggle, isVisi = true }) {
         selectedComponent={selectedComponent}
       />
     </div>
+    
   );
 }
 

@@ -47,6 +47,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/tac" element={<TAC />} />
+       
           <Route
             path="/app"
             element={<Pages isOpen={isOpen} toggle={toggleSidebar} />}
@@ -89,7 +90,7 @@ function App() {
             <Route path="mould" element={<Mould />} />
             <Route path="performance" element={<Performance />} />
           </Route>
-        )
+       
         <Route path="*" element={<PageNotFound />} />
       </Routes>
      

@@ -12,7 +12,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-
 const ProductionReport = ({ dates }) => {
   const [reportData, setProdReportData] = useState([]);
   const componentPDF = useRef();
@@ -71,24 +70,52 @@ const ProductionReport = ({ dates }) => {
             textAlign: "center",
           }}
         >
-          <CTableHead>
+          <CTableHead >
             <CTableRow>
-              <CTableHeaderCell rowSpan="2" scope="col">
-                Date
-              </CTableHeaderCell>
-              <CTableHeaderCell colSpan="3" scope="col">
-                Production
-              </CTableHeaderCell>
-              <CTableHeaderCell rowSpan="2" scope="col">
-                Energy per good production(kWh)
-              </CTableHeaderCell>
+              <CTableHeaderCell style={{alignContent:"center"}} rowSpan="3" colSpan="3"> Name of company & its logo</CTableHeaderCell>
+              <CTableHeaderCell style={{alignContent:"center",textTransform:"uppercase"}} rowSpan="3" colSpan={8}>Daily Production Report</CTableHeaderCell>
+              <CTableHeaderCell>Doc. No</CTableHeaderCell>
             </CTableRow>
+
             <CTableRow>
-              <CTableHeaderCell scope="col">Good</CTableHeaderCell>
-              <CTableHeaderCell scope="col">Reject</CTableHeaderCell>
-              <CTableHeaderCell scope="col">Total</CTableHeaderCell>
+              <CTableHeaderCell>Rev. No</CTableHeaderCell>
             </CTableRow>
+
+            <CTableRow>
+              <CTableHeaderCell>Rev. Date</CTableHeaderCell>
+            </CTableRow>
+
+            <CTableRow>
+              <CTableHeaderCell colSpan={2}>Machine No:</CTableHeaderCell>
+              <CTableHeaderCell colSpan={3}></CTableHeaderCell>
+              <CTableHeaderCell>Date</CTableHeaderCell>
+              <CTableHeaderCell colSpan={2}></CTableHeaderCell>
+              <CTableHeaderCell>Shift</CTableHeaderCell>
+              <CTableHeaderCell colSpan={2}></CTableHeaderCell>
+              <CTableHeaderCell>Operator</CTableHeaderCell>
+              <CTableHeaderCell></CTableHeaderCell>
+            </CTableRow>  
+
+            <CTableRow>
+                <CTableHeaderCell>Sr. No</CTableHeaderCell>
+                <CTableHeaderCell>Time</CTableHeaderCell>
+                <CTableHeaderCell>Product Name</CTableHeaderCell>
+                <CTableHeaderCell>Mould ID</CTableHeaderCell>
+                <CTableHeaderCell>Customer</CTableHeaderCell>
+                <CTableHeaderCell>Batch No </CTableHeaderCell>
+                <CTableHeaderCell>Target Qty/Hr</CTableHeaderCell>
+                <CTableHeaderCell>Actual Production</CTableHeaderCell>
+                <CTableHeaderCell>Ok Quantity</CTableHeaderCell>
+                <CTableHeaderCell>Rejection Quantity</CTableHeaderCell>
+                <CTableHeaderCell>Rejection Reason(Defect Name & Quantity)</CTableHeaderCell>
+                <CTableHeaderCell>Down Time(Start to End)</CTableHeaderCell>
+                <CTableHeaderCell>Down Time Reason</CTableHeaderCell>
+
+              </CTableRow>         
+
+
           </CTableHead>
+
           <CTableBody>
             {reportData && reportData.length > 0 ? (
               reportData.map((data, index) => (

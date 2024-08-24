@@ -64,21 +64,46 @@ const PlantReport = ({ dates }) => {
   return (
     <>
       <p style={{ fontSize: "16px", fontWeight: "700" }}>Daily Summary</p>
-      <CTable bordered borderColor="gray" style={{ textAlign: "center" }}>
+      <CTable bordered borderColor="black" style={{ textAlign: "center" }}>
         <CTableHead>
+          {/* First Row */}
           <CTableRow>
+            <CTableHeaderCell style={{alignContent:"center"}} colSpan={3} rowSpan={3}>Name Of Company & its logo</CTableHeaderCell>
+            <CTableHeaderCell style={{alignContent:"center"}} colSpan={8} rowSpan={3}>Daily Plant Report</CTableHeaderCell>
+            <CTableHeaderCell>Doc. No</CTableHeaderCell>
+          </CTableRow>
+          {/* Second Row */}
+          <CTableRow>
+            <CTableHeaderCell>Rev. No</CTableHeaderCell>
+          </CTableRow>
+          {/* Third Row */}
+          <CTableRow>
+            <CTableHeaderCell>Rev. Date</CTableHeaderCell>
+          </CTableRow>
+          {/* Fourth Row */}
+          <CTableRow>
+            <CTableHeaderCell colSpan={2}></CTableHeaderCell>
+            <CTableHeaderCell colSpan={3}></CTableHeaderCell>
+            <CTableHeaderCell>Date</CTableHeaderCell>
+            <CTableHeaderCell colSpan={2}></CTableHeaderCell>
+            <CTableHeaderCell>Shift</CTableHeaderCell>
+            <CTableHeaderCell colSpan={2}></CTableHeaderCell>
+            <CTableHeaderCell>Operator</CTableHeaderCell>
+          </CTableRow>
+          {/* Fifth Row */}
+          <CTableRow>
+            <CTableHeaderCell scope="col">Sr. No</CTableHeaderCell>
             <CTableHeaderCell scope="col">Date</CTableHeaderCell>
             <CTableHeaderCell scope="col">Good</CTableHeaderCell>
             <CTableHeaderCell scope="col">Reject</CTableHeaderCell>
             <CTableHeaderCell scope="col">Runner Weight(kg)</CTableHeaderCell>
             <CTableHeaderCell scope="col">Energy(kWh)</CTableHeaderCell>
-            <CTableHeaderCell scope="col">
-              Energy per good production(kWh)
-            </CTableHeaderCell>
+            <CTableHeaderCell scope="col">Energy per good production(kWh)</CTableHeaderCell>
             <CTableHeaderCell scope="col">AVAILABILITY(%)</CTableHeaderCell>
             <CTableHeaderCell scope="col">PERFORMANCE(%)</CTableHeaderCell>
             <CTableHeaderCell scope="col">QUALITY(%)</CTableHeaderCell>
             <CTableHeaderCell scope="col">OEE(%)</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Down Time(Start to End)</CTableHeaderCell>
           </CTableRow>
         </CTableHead>
         <CTableBody>
@@ -108,7 +133,7 @@ const PlantReport = ({ dates }) => {
             ))
           ) : (
             <CTableRow>
-              <CTableDataCell colSpan="10">
+              <CTableDataCell colSpan="12">
                 No Dates Selected/No Data in Selected Dates
               </CTableDataCell>
             </CTableRow>

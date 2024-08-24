@@ -69,7 +69,7 @@ const TitleText = styled(Typography)`
 `;
 
 const Home = ({ isOpen }) => {
-  const userData = useSelector((state) => state?.auth.userData);
+  const userData = useSelector((state) => state.auth.userData);
   const [username, setUsername] = useState("");
   const [miniData, setMiniData] = useState("");
   const [visible, setVisible] = useState(false);
@@ -112,7 +112,7 @@ const Home = ({ isOpen }) => {
 
   useEffect(() => {
     if (userData) {
-      setUsername(userData?.username);
+      setUsername(userData.username);
     }
   }, [userData]);
 

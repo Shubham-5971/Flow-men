@@ -8,7 +8,6 @@ const Navbar = () => {
       columnSpacing={2}
       sx={{ display: "flex", float: "left", width: "100%" }}
     >
-      {/* DashBoard Code  */}
       <Grid item lg={7} sx={{ float: "left" }}>
         <Typography
           style={{

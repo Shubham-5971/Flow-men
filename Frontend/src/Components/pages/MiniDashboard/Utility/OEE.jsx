@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -17,6 +17,7 @@ const Item = styled.div`
 
 const OEE = ({ percentage, gradient, strokeWidth }) => {
   const [animatedPercentage, setAnimatedPercentage] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,7 +26,17 @@ const OEE = ({ percentage, gradient, strokeWidth }) => {
       );
     }, 10);
 
-    return () => clearInterval(interval);
+    // Update screen size on resize
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("resize", handleResize);
+    };
   }, [percentage]);
 
   const radius = 60;
@@ -41,15 +52,34 @@ const OEE = ({ percentage, gradient, strokeWidth }) => {
     dynamicGradient = [
       "hsl(122.42deg 50.3% 63.16%)",
       "hsl(122.42deg 50.3% 63.16%)",
-    ];
-    // Green
+    ]; // Green
   }
+
+  // Responsive styles
+  const customOEEStyle = {
+    ...(isMobile && {
+      marginTop: "15%",
+      marginLeft: "2%",
+    }),
+  };
+
+  const textStyle = {
+    fontSize: isMobile ? "1em" : "1.5em",
+  };
+
+  const itemContainerStyle = {
+    display: "flex",
+    flexDirection: isMobile ? "row" : "column",
+    alignItems: isMobile ? "center" : "start",
+    color: "#0e2563",
+    fontWeight: "600",
+  };
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={6} md={6} style={{ padding: "0px 0px 0px 0px" }}>
+      <Grid item xs={12} md={6} style={{ padding: "0px 0px 0px 0px" }}>
         <Item>
-          <svg width={200} height={200}>
+          <svg width={isMobile ? 150 : 200} height={isMobile ? 150 : 200}>
             <defs>
               <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor={dynamicGradient[0]} />
@@ -69,8 +99,8 @@ const OEE = ({ percentage, gradient, strokeWidth }) => {
             {/* Background circle with gradient white effect */}
             <circle
               r={radius}
-              cx={100}
-              cy={100}
+              cx={isMobile ? 75 : 100}
+              cy={isMobile ? 75 : 100}
               fill="transparent"
               stroke={`url(#whiteGradient)`}
               strokeWidth={strokeWidth}
@@ -78,8 +108,8 @@ const OEE = ({ percentage, gradient, strokeWidth }) => {
             {/* Foreground circle */}
             <Circle
               r={radius}
-              cx={100}
-              cy={100}
+              cx={isMobile ? 75 : 100}
+              cy={isMobile ? 75 : 100}
               fill="transparent"
               stroke={`url(#gradient)`}
               strokeWidth={strokeWidth}
@@ -94,7 +124,7 @@ const OEE = ({ percentage, gradient, strokeWidth }) => {
               y="50%"
               dominantBaseline="central"
               textAnchor="middle"
-              fontSize={"1.5em"}
+              style={textStyle}
               fill={`url(#gradient)`}
             >
               {animatedPercentage.toFixed(0)}%
@@ -104,29 +134,23 @@ const OEE = ({ percentage, gradient, strokeWidth }) => {
       </Grid>
 
       {/* Red Yellow Green */}
-      <Grid item xs={6} md={6} style={{ marginTop: "50px" }}>
+      <Grid item xs={12} md={6} style={{ marginTop: isMobile ? "-64px" : "50px" }}>
         <Item
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             padding: "0px 7px 10px 0px",
+            ...customOEEStyle,
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "start",
-              color: "#0e2563",
-              fontWeight: "600",
-            }}
-          >
+          <div style={itemContainerStyle}>
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 marginBottom: "14px",
+                marginRight: isMobile ? "10px" : "0",
               }}
             >
               <div
@@ -145,6 +169,7 @@ const OEE = ({ percentage, gradient, strokeWidth }) => {
                 display: "flex",
                 alignItems: "center",
                 marginBottom: "14px",
+                marginRight: isMobile ? "10px" : "0",
               }}
             >
               <div
@@ -158,7 +183,13 @@ const OEE = ({ percentage, gradient, strokeWidth }) => {
               ></div>
               <span>Balanced Production</span>
             </div>
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: isMobile ? "10px" : "0",
+              }}
+            >
               <div
                 style={{
                   width: "20px",
